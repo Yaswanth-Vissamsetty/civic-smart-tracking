@@ -1,108 +1,355 @@
-# Civic Smart Tracking System
+# 🚀 Civic Smart Tracking System
 
-A Spring Boot web application for citizens to register civic complaints and
-track their resolution status. Administrators can review complaints, update
-their status, and view registered citizens.
+<div align="center">
 
-## Links
+### 🏛️ A Spring Boot Based Civic Complaint Registration & Tracking Portal
 
-- Live application: https://civic-smart-tracking.onrender.com
-- GitHub repository: https://github.com/Yaswanth-Vissamsetty/civic-smart-tracking
+Empowering citizens to report civic issues and track their resolution efficiently.
 
-## Features
+![Java](https://img.shields.io/badge/Java-17-orange?style=for-the-badge\&logo=openjdk)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-brightgreen?style=for-the-badge\&logo=springboot)
+![Spring MVC](https://img.shields.io/badge/Spring-MVC-success?style=for-the-badge)
+![Spring Data JPA](https://img.shields.io/badge/Spring_Data-JPA-blue?style=for-the-badge)
+![Thymeleaf](https://img.shields.io/badge/Thymeleaf-Template-green?style=for-the-badge)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge\&logo=bootstrap)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue?style=for-the-badge\&logo=postgresql)
 
-### Citizen
+🌐 **Live Demo:** https://civic-smart-tracking.onrender.com
 
-- Register and log in
-- Submit a civic complaint
-- View submitted complaints
-- Track a complaint using its complaint ID
-- Edit profile details
+📂 **GitHub Repository:** https://github.com/Yaswanth-Vissamsetty/civic-smart-tracking
 
-### Administrator
+</div>
 
-- Admin login
-- View all complaints
-- Search complaints
-- Update complaint status: Submitted, In Progress, or Resolved
-- Add resolution remarks
-- Delete a complaint
-- View registered citizens
+---
 
-## Complaint Categories
+# 📖 Overview
 
-- Water Leakage
-- Water Supply Issue
-- Drainage Problem
-- Garbage Collection
-- Street Light Issue
+Civic Smart Tracking System is a web-based complaint management application developed using **Java Spring Boot**.
 
-## Technology Used
+The application allows citizens to register civic complaints related to public services such as water supply, drainage, garbage collection, and street lighting. Citizens can monitor the progress of their complaints while administrators can review, manage, and update complaint statuses through a dedicated admin portal.
 
-- Java 17
-- Spring Boot
-- Spring MVC
-- Spring Data JPA
-- Thymeleaf
-- Bootstrap 5
-- HTML, CSS, and JavaScript
-- H2 database for local development
-- PostgreSQL on Render for deployment
-- Maven
+The project follows the **Spring Boot MVC Architecture** and uses **Spring Data JPA** for database operations.
 
-## Run Locally
+---
 
-### Requirements
+# ✨ Key Features
 
-- Java 17 or later
-- Maven
+## 👤 Citizen Module
 
-### Steps
+* User Registration
+* Secure Login
+* Submit Civic Complaints
+* View Submitted Complaints
+* Track Complaint using Complaint ID
+* Update Profile Information
+
+---
+
+## 🛠️ Administrator Module
+
+* Admin Login
+* View All Complaints
+* Search Complaints
+* Update Complaint Status
+* Add Resolution Remarks
+* Delete Complaints
+* View Registered Citizens
+
+---
+
+# 📋 Complaint Categories
+
+* 💧 Water Leakage
+* 🚰 Water Supply Issue
+* 🚧 Drainage Problem
+* 🗑️ Garbage Collection
+* 💡 Street Light Issue
+
+---
+
+# 🔄 Complaint Status Workflow
+
+```text
+Submitted
+      │
+      ▼
+In Progress
+      │
+      ▼
+Resolved
+```
+
+---
+
+# 🛠️ Technology Stack
+
+## Backend
+
+* Java 17
+* Spring Boot
+* Spring MVC
+* Spring Data JPA
+* Maven
+
+## Frontend
+
+* Thymeleaf
+* HTML5
+* CSS3
+* Bootstrap 5
+* JavaScript
+
+## Database
+
+### Local Development
+
+* H2 Database
+
+### Production
+
+* PostgreSQL
+
+---
+
+# 🏗️ Project Architecture
+
+```text
+Browser
+      │
+      ▼
+Controller
+      │
+      ▼
+Service
+      │
+      ▼
+Repository
+      │
+      ▼
+Database
+```
+
+The application follows the standard **Spring Boot MVC Architecture**, where:
+
+* Controller handles incoming HTTP requests.
+* Service contains business logic.
+* Repository interacts with the database.
+* Entity represents database tables.
+
+---
+
+# 📁 Project Structure
+
+```text
+src
+ ├── main
+ │
+ ├── java
+ │     └── com.civic.smarttracking
+ │           ├── controller
+ │           ├── service
+ │           ├── repository
+ │           ├── entity
+ │           └── CivicSmartTrackingApplication.java
+ │
+ └── resources
+       ├── static
+       │      ├── css
+       │      └── js
+       │
+       ├── templates
+       │
+       ├── application.properties
+       ├── schema.sql
+       └── data.sql
+```
+
+---
+
+# 🗄️ Database Design
+
+## Users
+
+| Field    | Type   |
+| -------- | ------ |
+| id       | Long   |
+| name     | String |
+| email    | String |
+| password | String |
+| mobile   | String |
+
+---
+
+## Complaints
+
+| Field         | Type   |
+| ------------- | ------ |
+| id            | Long   |
+| complaintId   | String |
+| category      | String |
+| description   | String |
+| location      | String |
+| complaintDate | Date   |
+| status        | String |
+| remarks       | String |
+
+---
+
+# 🚀 Application Flow
+
+```text
+Citizen Registration
+        │
+        ▼
+Citizen Login
+        │
+        ▼
+Raise Complaint
+        │
+        ▼
+Complaint Stored in Database
+        │
+        ▼
+Admin Reviews Complaint
+        │
+        ▼
+Admin Updates Status
+        │
+        ▼
+Citizen Tracks Complaint
+```
+
+---
+
+# 💻 Run Locally
+
+## Prerequisites
+
+* Java 17+
+* Maven
+
+Clone the repository
 
 ```bash
 git clone https://github.com/Yaswanth-Vissamsetty/civic-smart-tracking.git
+```
+
+Navigate to the project
+
+```bash
 cd civic-smart-tracking
+```
+
+Run the application
+
+```bash
 mvn spring-boot:run
 ```
 
-Open http://localhost:8080 in a browser.
+Open
 
-The project uses an embedded H2 database locally, so no database installation
-is required.
-
-## Demo Login Details
-
-| Account | Email | Password |
-| --- | --- | --- |
-| Administrator | admin@civic.gov.in | admin123 |
-| Citizen | rahul@gmail.com | citizen123 |
-
-## Deployment
-
-The application is deployed on Render using Docker and a managed PostgreSQL
-database. The `render.yaml` file creates the web service and database, while
-the `Dockerfile` builds and runs the Spring Boot application.
-
-## Project Structure
-
-```text
-src/main/java/com/civic/smarttracking/
-├── controller/     # Request handling
-├── service/        # Business logic
-├── repository/     # Database access
-├── entity/         # JPA entities
-└── CivicSmartTrackingApplication.java
-
-src/main/resources/
-├── static/         # CSS and JavaScript
-├── templates/      # Thymeleaf pages
-├── application.properties
-├── schema.sql
-└── data.sql
+```
+http://localhost:8080
 ```
 
-## Status Flow
+---
 
-```text
-Submitted → In Progress → Resolved
+# 🔑 Demo Credentials
+
+## Administrator
+
+Email
+
 ```
+admin@civic.gov.in
+```
+
+Password
+
+```
+admin123
+```
+
+---
+
+## Citizen
+
+Email
+
+```
+rahul@gmail.com
+```
+
+Password
+
+```
+citizen123
+```
+
+---
+
+# 🌍 Deployment
+
+The application is deployed on **Render**.
+
+Production Database
+
+* PostgreSQL
+
+Deployment includes:
+
+* Docker
+* Render Web Service
+* Managed PostgreSQL Database
+
+---
+
+# 📸 Screenshots
+
+Add screenshots here after deployment.
+
+Example:
+
+```
+Home Page
+
+Citizen Dashboard
+
+Raise Complaint
+
+Track Complaint
+
+Admin Dashboard
+```
+
+---
+
+# 📈 Future Enhancements
+
+* Email Notifications
+* Complaint Image Upload
+* SMS Alerts
+* Location Integration
+* Complaint Analytics
+* Mobile Responsive Improvements
+* Search & Filters
+* Role-based Security using Spring Security
+
+---
+
+# 👨‍💻 Developed By
+
+**Yaswanth Vissamsetty**
+
+B.Tech - Computer Science & Engineering
+
+Java Full Stack Developer
+
+GitHub:
+https://github.com/Yaswanth-Vissamsetty
+
+---
+
+# ⭐ If you like this project
+
+Give this repository a ⭐ on GitHub.
