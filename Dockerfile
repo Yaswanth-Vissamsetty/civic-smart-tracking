@@ -13,4 +13,4 @@ WORKDIR /app
 COPY --from=build /app/target/smart-tracking-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
 
-CMD ["sh", "-c", "java -Dspring.datasource.url=jdbc:${DATABASE_URL} -Dspring.datasource.driver-class-name=org.postgresql.Driver -Dspring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect -jar app.jar"]
+CMD ["sh", "-c", "export SPRING_DATASOURCE_URL=\"jdbc:postgresql://${DATABASE_URL#*@}\"; java -jar app.jar"]
