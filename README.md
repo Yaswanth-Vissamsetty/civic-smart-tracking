@@ -310,19 +310,17 @@ Add screenshots here after deployment.
 
 Example:
 
-```
-Home Page
+Home page
+<img width="1920" height="3595" alt="fullpage_snapshot_localhost_2026-08-06-21-33-51" src="https://github.com/user-attachments/assets/7ee0f613-8281-447f-8872-0e3733efb4e5" />
 
-Citizen Dashboard
+User Page
+<img width="1897" height="813" alt="user" src="https://github.com/user-attachments/assets/47fe6682-80d1-4900-b6f3-3c41fcb2b4dd" />
 
-Raise Complaint
+Admin Page
+<img width="1920" height="879" alt="fullpage_snapshot_localhost_2026-08-06-21-36-13" src="https://github.com/user-attachments/assets/4fee9389-feaf-4b44-898e-ce3931d4513f" />
 
-Track Complaint
 
-Admin Dashboard
-```
 
----
 
 # 📈 Future Enhancements
 
