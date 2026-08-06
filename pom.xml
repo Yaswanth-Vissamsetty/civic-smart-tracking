@@ -49,6 +49,13 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- PostgreSQL Driver (used by the Render production database) -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
 		<!-- DevTools for automatic restart during development -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

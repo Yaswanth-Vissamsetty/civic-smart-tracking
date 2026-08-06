@@ -123,6 +123,23 @@ VALUES
 
 ---
 
+## Deploy to Render
+
+This repository includes a `render.yaml` Blueprint that deploys the Spring Boot
+application and provisions a persistent PostgreSQL database in the Singapore
+region.
+
+1. Push this project to a GitHub repository.
+2. In Render, select **New** > **Blueprint** and connect that repository.
+3. Render detects `render.yaml`; review the service and database, then click
+   **Apply**.
+4. After deployment completes, open the generated `onrender.com` URL.
+
+The deployed database persists complaints and registrations between service
+restarts.
+
+---
+
 ## ⚡ How to Run The Project
 
 ### Option 1: Run with H2 Embedded Database (Instant Zero Setup)
