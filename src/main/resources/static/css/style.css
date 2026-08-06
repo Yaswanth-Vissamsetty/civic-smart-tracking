@@ -1,0 +1,308 @@
+/* =========================================================
+   Civic Smart Tracking System - CSS Stylesheet
+   Theme: Government Blue & White (Modern, Clean & Responsive)
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-blue: #1E3A8A;
+    --primary-blue-hover: #1E40AF;
+    --secondary-blue: #0284C7;
+    --accent-teal: #0D9488;
+    --light-bg: #F8FAFC;
+    --card-bg: #FFFFFF;
+    --text-main: #1E293B;
+    --text-muted: #64748B;
+    --border-color: #E2E8F0;
+    
+    /* Status Colors */
+    --status-submitted-bg: #FEF3C7;
+    --status-submitted-text: #92400E;
+    --status-progress-bg: #DBEAFE;
+    --status-progress-text: #1E40AF;
+    --status-resolved-bg: #D1FAE5;
+    --status-resolved-text: #065F46;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+}
+
+/* --- NAVBAR STYLES --- */
+.navbar-gov {
+    background-color: var(--primary-blue);
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
+}
+
+.navbar-gov .navbar-brand {
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: #FFFFFF !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-gov .nav-link {
+    color: #E2E8F0 !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.navbar-gov .nav-link:hover, 
+.navbar-gov .nav-link.active {
+    color: #FFFFFF !important;
+    background-color: rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+}
+
+.gov-badge {
+    background: linear-gradient(135deg, #0284C7, #0D9488);
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    background: linear-gradient(135deg, #1E3A8A 0%, #0284C7 100%);
+    color: white;
+    padding: 4.5rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+}
+
+.hero-title {
+    font-weight: 800;
+    font-size: 2.75rem;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 1.15rem;
+    opacity: 0.9;
+    max-width: 600px;
+}
+
+.quick-track-card {
+    background: white;
+    padding: 1.75rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    color: var(--text-main);
+}
+
+/* --- CARDS & METRICS --- */
+.card-custom {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-custom:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card {
+    border-left: 5px solid var(--secondary-blue);
+    padding: 1.25rem 1.5rem;
+}
+
+.stat-card.total { border-left-color: var(--primary-blue); }
+.stat-card.pending { border-left-color: #F59E0B; }
+.stat-card.resolved { border-left-color: #10B981; }
+.stat-card.citizens { border-left-color: #8B5CF6; }
+
+.stat-number {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- STATUS BADGES --- */
+.badge-submitted {
+    background-color: var(--status-submitted-bg);
+    color: var(--status-submitted-text);
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.badge-progress {
+    background-color: var(--status-progress-bg);
+    color: var(--status-progress-text);
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.badge-resolved {
+    background-color: var(--status-resolved-bg);
+    color: var(--status-resolved-text);
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+/* --- TRACKING TIMELINE --- */
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 15%;
+    right: 15%;
+    height: 4px;
+    background: #E2E8F0;
+    z-index: 1;
+}
+
+.timeline-progress {
+    position: absolute;
+    top: 50px;
+    left: 15%;
+    height: 4px;
+    background: var(--secondary-blue);
+    z-index: 1;
+    transition: width 0.4s ease;
+}
+
+.timeline-step {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.timeline-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid #CBD5E1;
+    color: #64748B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.timeline-step.active .timeline-icon {
+    border-color: var(--secondary-blue);
+    background: var(--secondary-blue);
+    color: white;
+}
+
+.timeline-step.completed .timeline-icon {
+    border-color: #10B981;
+    background: #10B981;
+    color: white;
+}
+
+/* --- BUTTONS & FORMS --- */
+.btn-gov-primary {
+    background-color: var(--primary-blue);
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-gov-primary:hover {
+    background-color: var(--primary-blue-hover);
+    color: white;
+}
+
+.btn-gov-secondary {
+    background-color: var(--secondary-blue);
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 8px;
+}
+
+.btn-gov-secondary:hover {
+    background-color: #0369A1;
+    color: white;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--secondary-blue);
+    box-shadow: 0 0 0 0.25rem rgba(2, 132, 199, 0.25);
+}
+
+/* --- SERVICE CARDS --- */
+.service-icon-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: #EFF6FF;
+    color: var(--primary-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: #0F172A;
+    color: #94A3B8;
+    padding: 3rem 0 1.5rem;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #CBD5E1;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: white;
+}

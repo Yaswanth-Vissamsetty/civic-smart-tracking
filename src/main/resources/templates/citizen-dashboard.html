@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Dashboard | Civic Smart Tracking System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <!-- Include Navbar -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <div class="container py-4">
+        
+        <!-- Welcome Banner -->
+        <div class="card card-custom p-4 bg-primary text-white mb-4 border-0 shadow-sm">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                <div>
+                    <h3 class="fw-bold mb-1">
+                        <i class="bi bi-speedometer2 text-warning me-2"></i> Welcome back, <span th:text="${user.name}">Citizen</span>!
+                    </h3>
+                    <p class="mb-0 text-white-50 small">
+                        Manage your lodged complaints, register new civic issues, and track live status update history.
+                    </p>
+                </div>
+                <div class="d-flex gap-2">
+                    <a th:href="@{/citizen/register-complaint}" class="btn btn-warning fw-bold text-dark px-3 py-2">
+                        <i class="bi bi-plus-circle-fill me-1"></i> New Complaint
+                    </a>
+                    <a th:href="@{/citizen/edit-profile}" class="btn btn-outline-light px-3 py-2">
+                        <i class="bi bi-pencil-square me-1"></i> Edit Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alert Toast Messages -->
+        <div th:if="${successMessage != null}" class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i> <span th:text="${successMessage}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        <div th:if="${errorMessage != null}" class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i> <span th:text="${errorMessage}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <!-- Dashboard Stat Cards -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="stat-card total bg-white rounded shadow-sm">
+                    <div class="stat-number" th:text="${stats.totalComplaints}">0</div>
+                    <div class="stat-label">My Total Complaints</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card pending bg-white rounded shadow-sm">
+                    <div class="stat-number text-warning" th:text="${stats.pendingComplaints}">0</div>
+                    <div class="stat-label">Pending / In Progress</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card resolved bg-white rounded shadow-sm">
+                    <div class="stat-number text-success" th:text="${stats.resolvedComplaints}">0</div>
+                    <div class="stat-label">Resolved Complaints</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Complaints Table -->
+        <div class="card card-custom p-4 shadow-sm mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold text-primary mb-0">
+                    <i class="bi bi-clock-history me-2"></i> My Complaints Summary
+                </h5>
+                <a th:href="@{/citizen/my-complaints}" class="btn btn-sm btn-outline-primary fw-semibold">View All Complaints</a>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Complaint ID</th>
+                            <th>Category</th>
+                            <th>Location</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="c : ${complaints}">
+                            <td class="fw-bold text-primary" th:text="${c.complaintCode}">CIVIC-1001</td>
+                            <td th:text="${c.category}">Water Leakage</td>
+                            <td th:text="${c.location}">Sector 4</td>
+                            <td th:text="${c.date}">2026-08-01</td>
+                            <td>
+                                <span th:if="${c.status == 'Submitted'}" class="badge badge-submitted" th:text="${c.status}">Submitted</span>
+                                <span th:if="${c.status == 'In Progress'}" class="badge badge-progress" th:text="${c.status}">In Progress</span>
+                                <span th:if="${c.status == 'Resolved'}" class="badge badge-resolved" th:text="${c.status}">Resolved</span>
+                            </td>
+                            <td>
+                                <a th:href="@{/track(code=${c.complaintCode})}" class="btn btn-sm btn-gov-secondary">
+                                    <i class="bi bi-eye-fill"></i> Track
+                                </a>
+                            </td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(complaints)}">
+                            <td colspan="6" class="text-center py-4 text-muted">
+                                <i class="bi bi-inbox fs-2 d-block mb-2 text-secondary"></i>
+                                You haven't registered any complaints yet. <a th:href="@{/citizen/register-complaint}" class="fw-bold text-primary">Lodge your first complaint</a>.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Include Footer -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

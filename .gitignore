@@ -1,0 +1,18 @@
+# Target compilation output
+target/
+*.class
+
+# IDE files
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log

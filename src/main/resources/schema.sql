@@ -1,0 +1,29 @@
+-- Civic Smart Tracking System Database Schema
+-- Compatible with MySQL and H2 Database
+
+CREATE TABLE IF NOT EXISTS users (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    mobile VARCHAR(15) NOT NULL,
+    role VARCHAR(20) NOT NULL DEFAULT 'CITIZEN',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS complaints (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    complaint_code VARCHAR(20) NOT NULL UNIQUE,
+    citizen_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    mobile VARCHAR(15) NOT NULL,
+    category VARCHAR(50) NOT NULL,
+    description TEXT NOT NULL,
+    location VARCHAR(200) NOT NULL,
+    date VARCHAR(20) NOT NULL,
+    status VARCHAR(30) NOT NULL DEFAULT 'Submitted',
+    remarks VARCHAR(255) DEFAULT 'Complaint received and queued for investigation.',
+    user_id BIGINT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+);

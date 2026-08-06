@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lodge New Complaint | Civic Smart Tracking System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <!-- Include Navbar -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                
+                <div class="card card-custom p-4 p-md-5 shadow-sm">
+                    
+                    <div class="border-bottom pb-3 mb-4 d-flex justify-content-between align-items-center">
+                        <div>
+                            <h3 class="fw-bold text-primary mb-1">
+                                <i class="bi bi-file-earmark-plus-fill me-2"></i> Register Municipal Complaint
+                            </h3>
+                            <p class="text-muted small mb-0">Fill in the details below to report a civic issue in your area</p>
+                        </div>
+                        <a th:href="@{/citizen/dashboard}" class="btn btn-outline-secondary btn-sm">
+                            <i class="bi bi-arrow-left me-1"></i> Back to Dashboard
+                        </a>
+                    </div>
+
+                    <!-- Alert Messages -->
+                    <div th:if="${errorMessage != null}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill me-1"></i> <span th:text="${errorMessage}"></span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+
+                    <form th:action="@{/citizen/register-complaint}" th:object="${complaint}" method="post">
+                        
+                        <!-- Section 1: Citizen Information (Pre-filled) -->
+                        <h6 class="fw-bold text-uppercase text-secondary fs-7 mb-3">1. Citizen Contact Information</h6>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-4">
+                                <label for="citizenName" class="form-label fw-semibold">Citizen Name</label>
+                                <input type="text" class="form-control bg-light" id="citizenName" th:field="*{citizenName}" readonly required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="email" class="form-label fw-semibold">Email Address</label>
+                                <input type="email" class="form-control bg-light" id="email" th:field="*{email}" readonly required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="mobile" class="form-label fw-semibold">Mobile Number</label>
+                                <input type="text" class="form-control bg-light" id="mobile" th:field="*{mobile}" readonly required>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Complaint Details -->
+                        <h6 class="fw-bold text-uppercase text-secondary fs-7 mb-3">2. Complaint Details</h6>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="category" class="form-label fw-semibold">Complaint Category <span class="text-danger">*</span></label>
+                                <select class="form-select" id="category" th:field="*{category}" required>
+                                    <option value="" selected disabled>-- Select Category --</option>
+                                    <option value="Water Leakage">Water Leakage</option>
+                                    <option value="Water Supply Issue">Water Supply Issue</option>
+                                    <option value="Drainage Problem">Drainage Problem</option>
+                                    <option value="Garbage Collection">Garbage Collection</option>
+                                    <option value="Street Light Issue">Street Light Issue</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="date" class="form-label fw-semibold">Date of Incident / Report <span class="text-danger">*</span></label>
+                                <input type="date" class="form-control" id="date" th:field="*{date}" required>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="location" class="form-label fw-semibold">Exact Location / Address <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="location" th:field="*{location}" placeholder="e.g. Near Community Hall, Street No. 4, Block C" required>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="description" class="form-label fw-semibold">Detailed Description <span class="text-danger">*</span></label>
+                                <textarea class="form-control" id="description" th:field="*{description}" rows="4" placeholder="Describe the civic issue in detail (e.g. main pipeline leaking heavily since morning)..." required></textarea>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Initial Status</label>
+                                <input type="text" class="form-control bg-light text-warning fw-bold" value="Submitted" readonly>
+                                <small class="text-muted">New complaints are assigned 'Submitted' status automatically.</small>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-3 border-top pt-3">
+                            <a th:href="@{/citizen/dashboard}" class="btn btn-light border px-4">Cancel</a>
+                            <button type="submit" class="btn btn-gov-primary px-5 fw-bold">
+                                <i class="bi bi-send-fill me-1"></i> Submit Complaint
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Footer -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>
